@@ -105,7 +105,7 @@
 //    m[14] = -(2.0f*far*near)/(far-near);
 //}
 //
-//void Mat4LookAt(float* m, const float* eye, const float* center, const float* up) {
+//void Mat4LookAt(float* m, const float* eye, const float* center, const float* up) { //이거는 어떻게 구함??
 //    float f[3] = {center[0]-eye[0], center[1]-eye[1], center[2]-eye[2]};
 //    Camera::Normalize(f);
 //    float s[3];
