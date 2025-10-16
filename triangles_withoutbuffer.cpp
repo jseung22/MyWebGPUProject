@@ -200,11 +200,11 @@
 //    {
 //        wgpu::RenderPassEncoder pass = encoder.BeginRenderPass(&rpDesc);
 //        pass.SetPipeline(pipeline);
-//        pass.Draw(3, INSTANCES); // 3 verts, 100x100 instances
+//        pass.Draw(3, INSTANCES); // 3 verts, 100x100 instances. 여기서 실행되는게 아냐
 //        pass.End();
 //    }
 //    wgpu::CommandBuffer cmd = encoder.Finish();
-//    device.GetQueue().Submit(1, &cmd);
+//    device.GetQueue().Submit(1, &cmd); //이렇게 보내야 실행됨.
 //
 //    // Present the acquired texture
 //    surface.Present();

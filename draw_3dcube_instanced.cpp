@@ -8,6 +8,9 @@
 //#include <chrono>
 //#include <cstring>
 //#include <GLFW/glfw3.h>
+//#if defined(__EMSCRIPTEN__)
+//#include <emscripten/emscripten.h>
+//#endif
 //#include <dawn/webgpu_cpp_print.h>
 //#include <webgpu/webgpu_cpp.h>
 //#include <webgpu/webgpu_glfw.h>
@@ -515,7 +518,6 @@
 //    }
 //    wgpu::CommandBuffer cmd = encoder.Finish();
 //    device.GetQueue().Submit(1, &cmd); // GPU에 명령 제출
-//    surface.Present(); // 화면에 결과 표시
 //}
 //
 //// ===================== 메인 =====================
@@ -532,18 +534,26 @@
 //        nullptr
 //    );
 //    surface = wgpu::glfw::CreateSurfaceForWindow(instance, window);
+//
 //    InitGraphics(); // GPU 리소스 준비
 //    glfwSetKeyCallback(window, KeyCallback); // 키 입력 콜백
 //    glfwSetCursorPosCallback(window, MouseCallback); // 마우스 이동 콜백
 //    glfwSetScrollCallback(window, ScrollCallback); // 마우스 휠 콜백
 //    glfwSetMouseButtonCallback(window, MouseButtonCallback); // 마우스 버튼 콜백
 //    glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED); // 초기: 카메라 컨트롤 모드(커서 숨김)
-//    while (!glfwWindowShouldClose(window)) {
-//        glfwPollEvents(); // 입력 이벤트 처리
-//        Render();        // 렌더링
-//        instance.ProcessEvents(); // WebGPU 이벤트 처리
-//    }
-//    glfwDestroyWindow(window);
-//    glfwTerminate();
+//
+//    #if defined(__EMSCRIPTEN__)
+//        emscripten_set_main_loop(Render, 0, false);
+//    #else
+//        while (!glfwWindowShouldClose(window)) {
+//        glfwPollEvents(); //입력 이벤트 처리
+//        Render(); //렌더링
+//        surface.Present(); //화면에 결과 표시
+//        instance.ProcessEvents(); //WebGPU 이벤트 처리
+//        }
+//        glfwDestroyWindow(window);
+//        glfwTerminate();
+//    #endif
+//
 //    return 0;
 //}

@@ -115,13 +115,13 @@
 //      .storeOp = wgpu::StoreOp::Store};
 //
 //  wgpu::RenderPassDescriptor renderpass{.colorAttachmentCount = 1,
-//                                        .colorAttachments = &attachment};
+//                                        .colorAttachments = &attachment}; // element 0 of colorAttachments array corresponds to @location(0)
 //
 //  wgpu::CommandEncoder encoder = device.CreateCommandEncoder();
-//  wgpu::RenderPassEncoder pass = encoder.BeginRenderPass(&renderpass);
+//  wgpu::RenderPassEncoder pass = encoder.BeginRenderPass(&renderpass); // renderpass - which texture we want to render to
 //  pass.SetPipeline(pipeline);
 //
-//  pass.Draw(3);
+//  pass.Draw(3); //call vertex shader 3 times. by default, every 3 times vertex shader is executed, a triangle will be drawn by connecting 3 values
 //  pass.End();
 //  wgpu::CommandBuffer commands = encoder.Finish();
 //  device.GetQueue().Submit(1, &commands);
