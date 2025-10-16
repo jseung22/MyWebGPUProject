@@ -9,12 +9,3 @@
 [submodule "stb"]
 	path = stb
 	url = https://github.com/nothings/stb.git
-[submodule "gn"]
-	path = gn
-	url = https://chromium.googlesource.com/chromium/src/tools/gn
-[submodule "vcpkg"]
-	path = vcpkg
-	url = https://github.com/microsoft/vcpkg.git
-[submodule "depot_tools"]
-	path = depot_tools
-	url = https://chromium.googlesource.com/chromium/tools/depot_tools.git
